@@ -16,4 +16,9 @@ abstract class _PlanetViewModelBase with Store {
   additem(ItemViewModel model) {
     listItens.add(model);
   }
+
+  @action
+  removeitem(ItemViewModel model) {
+    listItens.removeWhere((element) => element.nome == model.nome);
+  }
 }

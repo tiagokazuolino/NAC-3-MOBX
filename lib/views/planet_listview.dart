@@ -75,18 +75,18 @@ class PlanetListView extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: planetViewModel.listItens.length,
                   itemBuilder: (_, index) {
+                    ItemViewModel model = planetViewModel.listItens[index];
                     return ListTile(
                       title: Column(
                         children: [
-                          Text(planetViewModel.listItens[index].nome),
-                          Text(
-                              planetViewModel.listItens[index].size.toString()),
+                          Text(model.nome),
+                          Text(model.size.toString()),
                         ],
                       ),
                       trailing: IconButton(
                         color: Colors.redAccent,
                         icon: const Icon(Icons.delete),
-                        onPressed: () {},
+                        onPressed: planetViewModel.removeitem(model),
                       ),
                     );
                   });

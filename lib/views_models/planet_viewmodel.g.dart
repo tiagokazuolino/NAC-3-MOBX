@@ -39,6 +39,17 @@ mixin _$PlanetViewModel on _PlanetViewModelBase, Store {
   }
 
   @override
+  dynamic removeitem(ItemViewModel model) {
+    final _$actionInfo = _$_PlanetViewModelBaseActionController.startAction(
+        name: '_PlanetViewModelBase.removeitem');
+    try {
+      return super.removeitem(model);
+    } finally {
+      _$_PlanetViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 listItens: ${listItens}
