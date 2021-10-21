@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:nac3_mobx/views_models/item_viewmodel.dart';
 import 'package:nac3_mobx/views_models/planet_viewmodel.dart';
 
 class PlanetListView extends StatelessWidget {
@@ -7,14 +9,21 @@ class PlanetListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final planetViewModel = PlanetViewModel();
     _dialog() {
+      ItemViewModel model = ItemViewModel();
       showDialog(
           context: context,
           builder: (_) {
             return AlertDialog(
               title: const Text("Inserir um planeta"),
               actions: [
-                FlatButton(onPressed: () {}, child: const Text('Salvar')),
+                FlatButton(
+                    onPressed: () {
+                      planetViewModel.additem(model);
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Salvar')),
                 FlatButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -27,7 +36,7 @@ class PlanetListView extends StatelessWidget {
                   children: [
                     const Spacer(),
                     TextField(
-                      onChanged: (value) {},
+                      onChanged: model.setNome,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "nome do planeta",
@@ -35,7 +44,7 @@ class PlanetListView extends StatelessWidget {
                     ),
                     const Spacer(),
                     TextField(
-                      onChanged: (value) {},
+                      onChanged: model.setSize,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "tamanho do planeta",
@@ -49,7 +58,6 @@ class PlanetListView extends StatelessWidget {
           });
     }
 
-    final planetViewModel = PlanetViewModel();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -62,24 +70,27 @@ class PlanetListView extends StatelessWidget {
           height: size.height,
           width: size.width,
           child: Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: planetViewModel.listItens.length,
-                itemBuilder: (_, index) {
-                  return ListTile(
-                    title: Column(
-                      children: [
-                        Text(planetViewModel.listItens[index].nome),
-                        Text(planetViewModel.listItens[index].size.toString()),
-                      ],
-                    ),
-                    trailing: IconButton(
-                      color: Colors.redAccent,
-                      icon: const Icon(Icons.delete),
-                      onPressed: () {},
-                    ),
-                  );
-                }),
+            child: Observer(builder: (_) {
+              return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: planetViewModel.listItens.length,
+                  itemBuilder: (_, index) {
+                    return ListTile(
+                      title: Column(
+                        children: [
+                          Text(planetViewModel.listItens[index].nome),
+                          Text(
+                              planetViewModel.listItens[index].size.toString()),
+                        ],
+                      ),
+                      trailing: IconButton(
+                        color: Colors.redAccent,
+                        icon: const Icon(Icons.delete),
+                        onPressed: () {},
+                      ),
+                    );
+                  });
+            }),
           ),
         ),
         floatingActionButton: FloatingActionButton(

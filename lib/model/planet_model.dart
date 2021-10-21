@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 class Planet {
   String nome;
-  double size;
+  String size;
 
   Planet({
     required this.nome,

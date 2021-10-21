@@ -27,13 +27,13 @@ mixin _$ItemViewModel on _ItemViewModelBase, Store {
   final _$sizeAtom = Atom(name: '_ItemViewModelBase.size');
 
   @override
-  double get size {
+  String get size {
     _$sizeAtom.reportRead();
     return super.size;
   }
 
   @override
-  set size(double value) {
+  set size(String value) {
     _$sizeAtom.reportWrite(value, super.size, () {
       super.size = value;
     });
@@ -54,7 +54,7 @@ mixin _$ItemViewModel on _ItemViewModelBase, Store {
   }
 
   @override
-  dynamic setSize(double value) {
+  dynamic setSize(String value) {
     final _$actionInfo = _$_ItemViewModelBaseActionController.startAction(
         name: '_ItemViewModelBase.setSize');
     try {

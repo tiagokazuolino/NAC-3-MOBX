@@ -12,13 +12,13 @@ mixin _$PlanetViewModel on _PlanetViewModelBase, Store {
   final _$listItensAtom = Atom(name: '_PlanetViewModelBase.listItens');
 
   @override
-  List<ItemViewModel> get listItens {
+  ObservableList<ItemViewModel> get listItens {
     _$listItensAtom.reportRead();
     return super.listItens;
   }
 
   @override
-  set listItens(List<ItemViewModel> value) {
+  set listItens(ObservableList<ItemViewModel> value) {
     _$listItensAtom.reportWrite(value, super.listItens, () {
       super.listItens = value;
     });

@@ -4,17 +4,17 @@ part 'item_viewmodel.g.dart';
 class ItemViewModel = _ItemViewModelBase with _$ItemViewModel;
 
 abstract class _ItemViewModelBase with Store {
-  _ItemViewModelBase({required this.nome, required this.size});
+  _ItemViewModelBase({this.nome = "", this.size = ""});
 
   @observable
-  String nome = "";
+  String nome;
 
   @observable
-  double size = 0.0;
+  String size;
 
   @action
   setNome(String value) => nome = value;
 
   @action
-  setSize(double value) => size = value;
+  setSize(String value) => size = value;
 }
