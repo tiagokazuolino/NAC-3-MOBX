@@ -70,34 +70,35 @@ class PlanetListView extends StatelessWidget {
             })
           ],
         ),
-        body: Container(
-          color: Colors.black12,
-          height: size.height,
-          width: size.width,
-          child: Expanded(
-            child: Observer(builder: (_) {
-              return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: planetViewModel.total,
-                  itemBuilder: (_, index) {
-                    ItemViewModel model = planetViewModel.listItens[index];
-                    return ListTile(
-                      title: Column(
-                        children: [
-                          Text(model.nome),
-                          Text(model.size),
-                        ],
-                      ),
-                      trailing: IconButton(
-                        color: Colors.redAccent,
-                        icon: const Icon(Icons.delete),
-                        onPressed: planetViewModel.removeitem(model),
-                      ),
-                    );
-                  });
-            }),
-          ),
-        ),
+        body: Observer(builder: (_) {
+          return Container(
+            color: Colors.black12,
+            height: size.height,
+            width: size.width,
+            child: Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: planetViewModel.total - 1,
+                itemBuilder: (_, index) {
+                  ItemViewModel model = planetViewModel.listItens[index];
+                  return ListTile(
+                    title: Column(
+                      children: [
+                        Text(model.nome),
+                        Text(model.size),
+                      ],
+                    ),
+                    trailing: IconButton(
+                      color: Colors.redAccent,
+                      icon: const Icon(Icons.delete),
+                      onPressed: planetViewModel.removeitem(model),
+                    ),
+                  );
+                },
+              ),
+            ),
+          );
+        }),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
