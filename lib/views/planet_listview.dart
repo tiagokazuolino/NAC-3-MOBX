@@ -3,9 +3,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nac3_mobx/views_models/item_viewmodel.dart';
 import 'package:nac3_mobx/views_models/planet_viewmodel.dart';
 
-class PlanetListView extends StatelessWidget {
+class PlanetListView extends StatefulWidget {
   const PlanetListView({Key? key}) : super(key: key);
 
+  @override
+  State<PlanetListView> createState() => _PlanetListViewState();
+}
+
+class _PlanetListViewState extends State<PlanetListView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
