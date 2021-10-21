@@ -64,6 +64,11 @@ class PlanetListView extends StatelessWidget {
           title: const TextField(
             decoration: InputDecoration(hintText: "Pesquisa"),
           ),
+          actions: [
+            Observer(builder: (_) {
+              return Text(planetViewModel.listItens.length.toString());
+            })
+          ],
         ),
         body: Container(
           color: Colors.black12,
