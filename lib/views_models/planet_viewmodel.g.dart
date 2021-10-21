@@ -24,6 +24,20 @@ mixin _$PlanetViewModel on _PlanetViewModelBase, Store {
     });
   }
 
+  final _$_PlanetViewModelBaseActionController =
+      ActionController(name: '_PlanetViewModelBase');
+
+  @override
+  dynamic additem(ItemViewModel model) {
+    final _$actionInfo = _$_PlanetViewModelBaseActionController.startAction(
+        name: '_PlanetViewModelBase.additem');
+    try {
+      return super.additem(model);
+    } finally {
+      _$_PlanetViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
