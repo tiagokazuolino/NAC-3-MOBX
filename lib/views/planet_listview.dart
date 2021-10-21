@@ -78,7 +78,7 @@ class PlanetListView extends StatelessWidget {
             child: Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: planetViewModel.total - 1,
+                itemCount: planetViewModel.listItens.length,
                 itemBuilder: (_, index) {
                   ItemViewModel model = planetViewModel.listItens[index];
                   return ListTile(
