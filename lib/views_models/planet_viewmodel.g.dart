@@ -9,6 +9,13 @@ part of 'planet_viewmodel.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PlanetViewModel on _PlanetViewModelBase, Store {
+  Computed<int>? _$totalComputed;
+
+  @override
+  int get total => (_$totalComputed ??=
+          Computed<int>(() => super.total, name: '_PlanetViewModelBase.total'))
+      .value;
+
   final _$listItensAtom = Atom(name: '_PlanetViewModelBase.listItens');
 
   @override
@@ -52,7 +59,8 @@ mixin _$PlanetViewModel on _PlanetViewModelBase, Store {
   @override
   String toString() {
     return '''
-listItens: ${listItens}
+listItens: ${listItens},
+total: ${total}
     ''';
   }
 }

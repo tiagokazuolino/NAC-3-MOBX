@@ -66,7 +66,7 @@ class PlanetListView extends StatelessWidget {
           ),
           actions: [
             Observer(builder: (_) {
-              return Text(planetViewModel.listItens.length.toString());
+              return Text(planetViewModel.total.toString());
             })
           ],
         ),
@@ -85,7 +85,7 @@ class PlanetListView extends StatelessWidget {
                       title: Column(
                         children: [
                           Text(model.nome),
-                          Text(model.size.toString()),
+                          Text(model.size),
                         ],
                       ),
                       trailing: IconButton(

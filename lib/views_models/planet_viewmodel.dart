@@ -12,6 +12,9 @@ abstract class _PlanetViewModelBase with Store {
     ItemViewModel(nome: "Terra", size: "5550"),
   ].asObservable();
 
+  @computed
+  int get total => listItens.length;
+
   @action
   additem(ItemViewModel model) {
     listItens.add(model);
